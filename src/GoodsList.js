@@ -56,10 +56,10 @@ class GoodsList extends React.Component {
   }
 
   filertByLength = (event) => {
-    this.setState((prevState) => ({
+    this.setState({
       selectedValue: event.target.value,
-      listOfGoodsToShow: prevState.listOfGoods.filter(good => good.length >= Number(event.target.value)),
-    }))
+      listOfGoodsToShow: this.state.listOfGoods.filter(good => good.length >= Number(event.target.value)),
+    })
   }
 
   render() {
