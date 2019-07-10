@@ -55,14 +55,21 @@ class GoodsList extends React.Component {
     }));
   }
 
-  filertByLength = (event) => {
+  filterByLength = (event) => {
+    const { value } = event.target;
+
     this.setState({
-      selectedValue: event.target.value,
-      listOfGoodsToShow: this.state.listOfGoods.filter(good => good.length >= Number(event.target.value)),
+      selectedValue: value,
+      listOfGoodsToShow: this.state.listOfGoods.filter(good => good.length >= Number(value)),
     })
   }
 
   render() {
+    let options = [];
+    for (let i = 1; i < 11; i++) {
+      options.push(<option value={i}>{i}</option>)
+    }
+
     return (
       <div>
         {!this.state.isLoaded && (
@@ -92,17 +99,8 @@ class GoodsList extends React.Component {
               Reset
             </button>
 
-            <select onChange={this.filertByLength} value={this.state.selectedValue}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+            <select onChange={this.filterByLength} value={this.state.selectedValue}>
+              {options}
             </select>
 
             <ul>
